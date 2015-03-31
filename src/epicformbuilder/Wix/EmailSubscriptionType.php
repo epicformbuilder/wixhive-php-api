@@ -11,8 +11,8 @@ namespace epicformbuilder\Wix;
 class EmailSubscriptionType
 {
     const OPT_OUT = "optOut";
-    const TRANSACTIONAL = "Transactional";
-    const RECURRING = "Recurring";
+    const TRANSACTIONAL = "transactional";
+    const RECURRING = "recurring";
 
     private static $allowedTypes = [self::OPT_OUT, self::TRANSACTIONAL, self::RECURRING];
 

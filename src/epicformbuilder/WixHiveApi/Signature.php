@@ -31,9 +31,9 @@ class Signature{
             "x-wix-application-id" => $applicationId,
             "x-wix-instance-id" => $instanceId,
             "x-wix-timestamp" => $date->format(self::TIME_FORMAT),
-            "userSessionToken" => trim($userSessionToken),
             "version" => $apiVersionInGetParam,
         ];
+        if ($userSessionToken !== null) $queryData['userSessionToken'] = $userSessionToken;
 
         ksort($queryData);
 
@@ -44,7 +44,7 @@ class Signature{
             trim($body)
         ];
 
-        $tmp = strtr(base64_encode(hash_hmac("sha256", implode("\n", $signData), $secretKey, true)), "+/", "-_");
+        $tmp = strtr(base64_encode(hash_hmac("sha256", trim(implode("\n", $signData)), $secretKey, true)), "+/", "-_");
         $tmp = str_replace("=", "", $tmp);
 
         return $tmp;

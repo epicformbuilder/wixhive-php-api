@@ -64,7 +64,7 @@ abstract class Command{
      * @return string
      */
     public function getBody(){
-        return $this->requestBodyObject ? json_encode($this->requestBodyObject) : "";
+        return $this->requestBodyObject ? json_encode($this->requestBodyObject, JSON_UNESCAPED_SLASHES) : "";
     }
 
     /**

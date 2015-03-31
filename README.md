@@ -18,7 +18,7 @@ This library is a PHP wrapper WixHive API.
         $activityInfo->fields = [$field];
             
         // create the model    
-        $createActivity = new CreateActivity(new \DateTime(), ActivityType::CONTACT_CONTACT_FORM, null, null, $activityInfo, null);
+        $createActivity = new CreateActivity(new DateTime(), ActivityType::CONTACT_CONTACT_FORM, null, null, $activityInfo, null);
         
         // create the command to execute
         $command = new CreateActivity($createActivity);    
@@ -29,7 +29,7 @@ This library is a PHP wrapper WixHive API.
             $data = $wixHive->execute($command, $userSessionToken); <-- $userSessionToken comes from Wix JS SDK
             
         }catch (WixHiveException $e){
-            // catch error here
+            // catch an error here
             print_r($e->getMessage());
         }
 ```

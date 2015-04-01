@@ -37,7 +37,7 @@ class CreateContactTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals("/contacts", $createContact->getCommand());
         $this->assertEquals("POST", $createContact->getHttpMethod());
         $this->assertEquals([], $createContact->getHttpHeaders());
-        $this->assertEquals('{"name":{"prefix":"prefix","first":"firstname","middle":"middlename","last":"lastname","suffix":"suffix"},"picture":"Picture","company":{"role":"role","name":"Company Name"},"emails":[{"id":"1","tag":"email-tag","email":"email@wix.com","emailStatus":"emailStatus"}],"phones":[{"id":"2","tag":"phone-tag","phone":"phone","normalizedPhone":"123456"}],"addresses":[{"id":"3","tag":"address-tag","address":"","neighborhood":"NewYork","city":"NewYork","region":"","country":"","postalCode":""}],"urls":[{"id":"url_id","tag":"url_tag","url":"http:\/\/wix.com"}],"dates":[{"id":"date_id","tag":"date_tag","date":"2015-01-01T12:12:12.000Z"}]}', $createContact->getBody());
+        $this->assertEquals('{"name":{"prefix":"prefix","first":"firstname","middle":"middlename","last":"lastname","suffix":"suffix"},"picture":"Picture","company":{"role":"role","name":"Company Name"},"emails":[{"id":"1","tag":"email-tag","email":"email@wix.com","emailStatus":"emailStatus"}],"phones":[{"id":"2","tag":"phone-tag","phone":"phone","normalizedPhone":"123456"}],"addresses":[{"id":"3","tag":"address-tag","address":"","neighborhood":"NewYork","city":"NewYork","region":"","country":"","postalCode":""}],"urls":[{"id":"url_id","tag":"url_tag","url":"http://wix.com"}],"dates":[{"id":"date_id","tag":"date_tag","date":"2015-01-01T12:12:12.000Z"}]}', $createContact->getBody());
     }
 
 

@@ -26,7 +26,7 @@ class UpdateUrlForContactTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals("/contacts/$contactId/url/$urlId", $updateUrlForContact->getCommand());
         $this->assertEquals("PUT", $updateUrlForContact->getHttpMethod());
         $this->assertEquals([], $updateUrlForContact->getHttpHeaders());
-        $this->assertEquals('{"id":"1111","tag":"address-tag","url":"http:\/\/wix.com"}', $updateUrlForContact->getBody());
+        $this->assertEquals('{"id":"1111","tag":"address-tag","url":"http://wix.com"}', $updateUrlForContact->getBody());
     }
 
 }

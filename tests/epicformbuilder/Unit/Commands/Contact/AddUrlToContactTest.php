@@ -25,7 +25,7 @@ class AddUrlToContactTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals("/contacts/$contactId", $addUrlToContact->getCommand());
         $this->assertEquals("POST", $addUrlToContact->getHttpMethod());
         $this->assertEquals([], $addUrlToContact->getHttpHeaders());
-        $this->assertEquals('{"id":"111","tag":"url-tag","url":"http:\/\/wix.com"}', $addUrlToContact->getBody());
+        $this->assertEquals('{"id":"111","tag":"url-tag","url":"http://wix.com"}', $addUrlToContact->getBody());
     }
 
 }

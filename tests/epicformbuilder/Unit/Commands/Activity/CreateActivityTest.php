@@ -34,7 +34,7 @@ class CreateActivityTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals("/activities", $createActivity->getCommand());
         $this->assertEquals("POST", $createActivity->getHttpMethod());
         $this->assertEquals([], $createActivity->getHttpHeaders());
-        $this->assertEquals('{"createdAt":"'.$date->format(Signature::TIME_FORMAT).'","activityType":"contact\/contact-form","activityInfo":{"fields":[{"name":"test name","value":"test value"}]}}', $createActivity->getBody());
+        $this->assertEquals('{"createdAt":"'.$date->format(Signature::TIME_FORMAT).'","activityType":"contact/contact-form","activityInfo":{"fields":[{"name":"test name","value":"test value"}]}}', $createActivity->getBody());
     }
 
 

@@ -27,7 +27,7 @@ class UpdateEmailSubscriptionStatusForContactTest extends \PHPUnit_Framework_Tes
         $this->assertEquals("/contacts/$contactId/email/$emailId/subscription", $command->getCommand());
         $this->assertEquals("PUT", $command->getHttpMethod());
         $this->assertEquals([], $command->getHttpHeaders());
-        $this->assertEquals('{"status":"Recurring"}', $command->getBody());
+        $this->assertEquals('{"status":"recurring"}', $command->getBody());
     }
 
 }

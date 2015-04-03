@@ -26,7 +26,7 @@ class ImportantDate extends Model
      * @param string      $tag
      * @param \DateTime   $date
      */
-    public function __construct($id=null, $tag="", \DateTime $date = null)
+    public function __construct($id=null, $tag=null, \DateTime $date = null)
     {
         $this->id = $id;
         $this->tag = $tag;

@@ -31,7 +31,7 @@ class ContactName extends Model
      * @param string $last
      * @param string $suffix
      */
-    public function __construct($prefix="", $first="", $middle="", $last="", $suffix="")
+    public function __construct($prefix=null, $first=null, $middle=null, $last=null, $suffix=null)
     {
         $this->prefix = $prefix;
         $this->first = $first;

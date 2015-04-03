@@ -23,7 +23,7 @@ class UpsertContact extends Model
      * @param string $email
      * @param string $userSessionToken
      */
-    public function __construct($phone="", $email="", $userSessionToken="")
+    public function __construct($phone=null, $email=null, $userSessionToken=null)
     {
         $this->phone = $phone;
         $this->email = $email;

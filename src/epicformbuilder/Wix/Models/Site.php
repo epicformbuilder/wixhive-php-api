@@ -19,7 +19,7 @@ class Site extends Model{
      * @param string $url
      * @param string $status
      */
-    public function __construct($url, $status){
+    public function __construct($url=null, $status=null){
         $this->url = $url;
         $this->status = $status;
     }

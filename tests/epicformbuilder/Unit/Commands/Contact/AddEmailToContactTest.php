@@ -18,7 +18,7 @@ class AddEmailToContactTest extends \PHPUnit_Framework_TestCase
         $modifiedAt = new DateTime("now", new DateTimeZone("UTC"));
         $contactId = "12345";
 
-        $emailModel = new ContactEmail("11111", "email-tag", "john@smith.com");
+        $emailModel = new ContactEmail("11111", "email-tag", "john@smith.com", "");
         $addEmailToContact = new AddEmailToContactCommand($contactId, $emailModel, $modifiedAt);
 
         $this->assertEquals("https://openapi.wix.com/v1/contacts/$contactId?modifiedAt=".urlencode($modifiedAt->format(Signature::TIME_FORMAT)), $addEmailToContact->getEndpointUrl());

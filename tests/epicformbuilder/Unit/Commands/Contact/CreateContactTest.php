@@ -26,7 +26,7 @@ class CreateContactTest extends \PHPUnit_Framework_TestCase
         $company = new Company("role", "Company Name");
         $email = new ContactEmail("1", "email-tag", "email@wix.com", "emailStatus");
         $phone = new ContactPhone("2", "phone-tag", "phone", "123456");
-        $address = new Address("3", "address-tag", "", "NewYork", "NewYork");
+        $address = new Address("3", "address-tag", "", "NewYork", "NewYork","","","");
         $url = new ContactUrl("url_id", "url_tag", "http://wix.com");
         $date = new ImportantDate("date_id", "date_tag", new \DateTime("2015-01-01 12:12:12"));
 

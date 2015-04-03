@@ -19,7 +19,7 @@ class StateLink extends Model
      * @param string $href
      * @param string $rel
      */
-    public function __construct($href="", $rel="")
+    public function __construct($href=null, $rel=null)
     {
         $this->href = $href;
         $this->rel = $rel;

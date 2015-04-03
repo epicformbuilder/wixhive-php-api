@@ -18,7 +18,7 @@ class AddAddressToContactTest extends \PHPUnit_Framework_TestCase
         $modifiedAt = new DateTime("now", new DateTimeZone("UTC"));
         $contactId = "12345";
 
-        $addressModel = new Address("11111", "address-tag", "", "NY", "NY area", "USA", "12345");
+        $addressModel = new Address("11111", "address-tag", "", "NY", "NY area", "USA", "12345", "");
         $addAddressToContact = new AddAddressToContactCommand($contactId, $addressModel, $modifiedAt);
 
         $this->assertEquals("https://openapi.wix.com/v1/contacts/$contactId?modifiedAt=".urlencode($modifiedAt->format(Signature::TIME_FORMAT)), $addAddressToContact->getEndpointUrl());

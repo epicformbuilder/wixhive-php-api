@@ -27,7 +27,7 @@ class ContactPhone extends Model
      * @param string $phone
      * @param string $normalizedPhone
      */
-    public function __construct($id=null, $tag="", $phone="", $normalizedPhone="")
+    public function __construct($id=null, $tag=null, $phone=null, $normalizedPhone=null)
     {
         $this->id = $id;
         $this->tag = $tag;

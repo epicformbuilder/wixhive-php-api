@@ -28,7 +28,7 @@ class AddContactActivityTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals("/contacts/$contactId/activities", $command->getCommand());
         $this->assertEquals("POST", $command->getHttpMethod());
         $this->assertEquals([], $command->getHttpHeaders());
-        $this->assertEquals('{"id":"11111","createdAt":{"date":"2015-01-01 12:12:12.000000","timezone_type":3,"timezone":"UTC"},"activityType":"auth/status-change","activityLocationUrl":"","activityDetails":{"additionalInfoUrl":"string1","summary":"string2"},"activityInfo":{}}', $command->getBody());
+        $this->assertEquals('{"id":"11111","createdAt":"2015-01-01T12:12:12.000Z","activityType":"auth/status-change","activityLocationUrl":"","activityDetails":{"additionalInfoUrl":"string1","summary":"string2"},"activityInfo":{}}', $command->getBody());
     }
 
 }

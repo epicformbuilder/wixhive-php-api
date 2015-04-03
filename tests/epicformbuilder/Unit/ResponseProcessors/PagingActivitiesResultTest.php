@@ -28,7 +28,7 @@ class PagingActivitiesResultTest extends PHPUnit_Framework_TestCase
         $activityObject->activityInfo = $activity->activityInfo;
         $activityObject->activityLocationUrl = $activity->activityLocationUrl;
         $activityObject->activityType = $activity->activityType;
-        $activityObject->createdAt = $activity->createdAt->format(Signature::TIME_FORMAT);
+        $activityObject->createdAt = $activity->createdAt;
 
         $activityObject->id = $activity->id;
         $activityObject->activityDetails = new stdClass();

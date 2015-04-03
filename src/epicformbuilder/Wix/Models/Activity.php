@@ -8,6 +8,7 @@
 namespace epicformbuilder\Wix\Models;
 
 use epicformbuilder\Wix\ActivityType;
+use epicformbuilder\WixHiveApi\Signature;
 
 class Activity extends Model
 {
@@ -37,10 +38,10 @@ class Activity extends Model
      * @param ActivityDetails $activityDetails
      * @param \stdClass       $activityInfo
      */
-    public function __construct($id, \DateTime $createdAt, $activityType, \stdClass $activityInfo, $activityLocationUrl="", ActivityDetails $activityDetails=null)
+    public function __construct($id=null, \DateTime $createdAt=null, $activityType=null, \stdClass $activityInfo=null, $activityLocationUrl=null, ActivityDetails $activityDetails=null)
     {
         $this->id = $id;
-        $this->createdAt = $createdAt;
+        $this->createdAt = $createdAt->format(Signature::TIME_FORMAT) ;
         $this->activityType = ActivityType::isTypeAllowed($activityType) ? $activityType : "" ;
         $this->activityLocationUrl = $activityLocationUrl;
         $this->activityDetails = $activityDetails;

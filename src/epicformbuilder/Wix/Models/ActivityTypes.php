@@ -15,7 +15,7 @@ class ActivityTypes extends Model
     /**
      * @param array $types
      */
-    public function __construct(array $types)
+    public function __construct(array $types=null)
     {
         $this->types = $types;
     }

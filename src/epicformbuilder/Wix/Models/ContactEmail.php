@@ -27,7 +27,7 @@ class ContactEmail extends Model
      * @param string $email
      * @param string $emailStatus
      */
-    public function __construct($id=null, $tag="", $email="", $emailStatus= "")
+    public function __construct($id=null, $tag=null, $email=null, $emailStatus=null)
     {
         $this->id = $id;
         $this->tag = $tag;

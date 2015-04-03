@@ -19,7 +19,7 @@ class Company extends Model
      * @param string $role
      * @param string $name
      */
-    public function __construct($role="", $name="")
+    public function __construct($role=null, $name=null)
     {
         $this->role = $role;
         $this->name = $name;

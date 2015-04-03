@@ -43,7 +43,7 @@ class Address extends Model
      * @param string $country
      * @param string $postalCode
      */
-    public function __construct($id=null, $tag="", $address="", $neighborhood="", $city="", $region="", $country="", $postalCode="")
+    public function __construct($id=null, $tag=null, $address=null, $neighborhood=null, $city=null, $region=null, $country=null, $postalCode=null)
     {
         $this->id = $id;
         $this->tag = $tag;

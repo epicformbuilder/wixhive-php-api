@@ -16,7 +16,7 @@ class Picture extends Model
     /**
      * @param string $picture
      */
-    public function __construct($picture)
+    public function __construct($picture=null)
     {
         $this->picture= $picture;
 

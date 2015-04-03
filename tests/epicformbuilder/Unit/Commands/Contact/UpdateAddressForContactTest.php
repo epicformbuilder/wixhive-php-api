@@ -19,7 +19,7 @@ class UpdateAddressForContactTest extends \PHPUnit_Framework_TestCase
         $contactId = "12345";
         $addressId ="6789";
 
-        $address = new Address("1111", "address-tag", "", "NY", "NY", "USA", "12345");
+        $address = new Address("1111", "address-tag", "", "NY", "NY", "USA", "12345","");
         $updateAddressForContact = new UpdateAddressForContactCommand($contactId, $addressId, $address, $modifiedAt);
 
         $this->assertEquals("https://openapi.wix.com/v1/contacts/$contactId/address/$addressId?modifiedAt=".urlencode($modifiedAt->format(Signature::TIME_FORMAT)), $updateAddressForContact->getEndpointUrl());

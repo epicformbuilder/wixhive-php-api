@@ -19,7 +19,7 @@ class SitePages extends Model
      * @param Site  $siteUrl
      * @param array $pages
      */
-    public function __construct(Site $siteUrl, array $pages)
+    public function __construct(Site $siteUrl=null, array $pages=null)
     {
         $this->siteUrl = $siteUrl;
         $this->pages = $pages;

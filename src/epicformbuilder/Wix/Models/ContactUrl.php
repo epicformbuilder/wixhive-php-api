@@ -23,7 +23,7 @@ class ContactUrl extends Model
      * @param string $tag
      * @param string $url
      */
-    public function __construct($id=null, $tag="", $url="")
+    public function __construct($id=null, $tag=null, $url=null)
     {
         $this->id = $id;
         $this->tag = $tag;

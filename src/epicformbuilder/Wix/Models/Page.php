@@ -23,7 +23,7 @@ class Page extends Model
      * @param $wixPageId
      * @param $appPageId
      */
-    public function __construct($path, $wixPageId, $appPageId)
+    public function __construct($path=null, $wixPageId=null, $appPageId=null)
     {
         $this->path = $path;
         $this->wixPageId = $wixPageId;

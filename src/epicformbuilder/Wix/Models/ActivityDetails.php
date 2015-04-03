@@ -19,7 +19,7 @@ class ActivityDetails extends Model
      * @param string $additionalInfoUrl
      * @param string $summary
      */
-    public function __construct($additionalInfoUrl = "", $summary = "")
+    public function __construct($additionalInfoUrl=null, $summary=null)
     {
         $this->additionalInfoUrl = $additionalInfoUrl;
         $this->summary = $summary;

@@ -37,7 +37,7 @@ class CreateActivity extends Model
      * @param \stdClass       $activityInfo
      * @param Contact         $contactUpdate
      */
-    public function __construct(\DateTime $createdAt, $activityType="", $activityLocationUrl=null, ActivityDetails $activityDetails = null, \stdClass $activityInfo = null, Contact $contactUpdate = null)
+    public function __construct(\DateTime $createdAt=null, $activityType=null, $activityLocationUrl=null, ActivityDetails $activityDetails = null, \stdClass $activityInfo = null, Contact $contactUpdate = null)
     {
         $this->createdAt = $createdAt->format(Signature::TIME_FORMAT);
         $this->activityType = $activityType;

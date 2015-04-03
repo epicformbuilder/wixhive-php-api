@@ -61,7 +61,7 @@ class Contact extends Model
      * @param \DateTime $createdAt
      * @param \DateTime $modifiedAt
      */
-    public function __construct($id="", ContactName $name, $picture="", Company $company, array $emails = null, array $phones = null, array $addresses = null, array $urls = null, array $dates= null, array $links = null, \DateTime $createdAt = null,\DateTime $modifiedAt = null )
+    public function __construct($id=null, ContactName $name=null, $picture=null, Company $company=null, array $emails=null, array $phones=null, array $addresses=null, array $urls=null, array $dates=null, array $links=null, \DateTime $createdAt=null,\DateTime $modifiedAt=null )
     {
         $this->id = $id;
         $this->name = $name;
@@ -73,8 +73,8 @@ class Contact extends Model
         $this->urls = $urls;
         $this->dates = $dates;
         $this->links = $links;
-        $this->createdAt = $createdAt->format(Signature::TIME_FORMAT);
-        $this->modifiedAt  = $modifiedAt->format(Signature::TIME_FORMAT);
+        $this->createdAt = $createdAt!==null ? $createdAt->format(Signature::TIME_FORMAT) : null;
+        $this->modifiedAt  = $modifiedAt !== null ? $modifiedAt->format(Signature::TIME_FORMAT) : null;
     }
 
 }

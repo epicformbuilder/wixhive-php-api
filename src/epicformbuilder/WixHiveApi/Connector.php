@@ -13,6 +13,7 @@ class Connector{
      * @param Request $wixHiveRequest
      *
      * @return Response
+     * @throws WixHiveException
      */
     public function execute(Request $wixHiveRequest){
 
@@ -46,7 +47,14 @@ class Connector{
 
         $response = http_parse_message($result);
 
+        $contentType = explode(";", $response->headers['Content-Type']);
+
+        if (!isset($contentType[0]) || $contentType[0] !== "application/json"){
+            throw new WixHiveException("Response content type is not supported", "415");
+        }
+
         return new Response(json_decode($response->body));
+
     }
 
     private function setHttpMethod($resource, Request $wixHiveRequest) {

@@ -9,6 +9,12 @@
     "require": {
         "php": ">=5.4.0"
     },
+    "authors" : [
+        {
+          "name" : "Epic Form Builder Team",
+          "email" : "support@epicformbuilder.com"
+        }
+    ],
     "require-dev": {
         "phake/phake": "2.0.*@dev",
         "phpunit/phpunit": "4.2.6"

@@ -1,5 +1,5 @@
 {
-    "name": "WixHive",
+    "name": "epicformbuilder/wixhive-php-api",
     "description": "WixHive API PHP Library",
     "type": "library",
     "version": "0.0.1",

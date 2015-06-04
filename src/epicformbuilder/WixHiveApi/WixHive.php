@@ -55,6 +55,7 @@ class WixHive{
             "x-wix-timestamp" => $date->format(Signature::TIME_FORMAT),
             "x-wix-signature" => Signature::sign($this->applicationId, $this->secretKey, $this->instanceId, $userSessionToken, Command::WIXHIVE_VERSION, self::API_VERSION, $command->getCommand(), $command->getBody(), $command->getHttpMethod(), $date),
             "Content-Type" => "application/json",
+            "Expect" => "",
         ];
         $wixHiveRequest = new Request($command->getEndpointUrl($getParams), $command->getHttpMethod(), $headers, $command->getBody());
 

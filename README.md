@@ -10,7 +10,7 @@ This library is a PHP wrapper WixHive API.
         $wixHive = new WixHive("{app_id}", "{app_secret_key}", "{instance_id}");
         
         // generate data for activity                    
-        $field = new strClass();
+        $field = new stdClass();
         $field->name = "Name";
         $field->value = "Value";
             

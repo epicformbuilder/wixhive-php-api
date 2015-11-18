@@ -2,22 +2,21 @@
 /**
  * User: EpicFormBuilder
  * Email: support@epicformbuilder.com
- * Date: 3/24/15
- * Time: 4:22 PM
+ * Date: 11/18/15
+ * Time: 8:44 PM
  */
 
 use epicformbuilder\Wix\ActivityType;
-use epicformbuilder\Wix\Models\CreateActivityOld;
-use epicformbuilder\WixHiveApi\Commands\Activity\CreateActivity as CreateActivityCommand;
+use epicformbuilder\Wix\Models\CreateActivity;
+use epicformbuilder\WixHiveApi\Commands\Contact\CreateContactActivity;
 use epicformbuilder\WixHiveApi\Signature;
 
 
-class CreateActivityTest extends \PHPUnit_Framework_TestCase
-{
-
+class CreateContactActivityTest extends \PHPUnit_Framework_TestCase{
 
     public function testCreateActivityCommandShouldReturnExpectedData()
     {
+        $contactId = "12345";
 
         $date = new \DateTime();
         $item = new \stdClass();
@@ -27,16 +26,14 @@ class CreateActivityTest extends \PHPUnit_Framework_TestCase
         $activityInfo = new \stdClass();
         $activityInfo->fields = [$item];
 
-        $createActivityModel = new CreateActivityOld($date, ActivityType::CONTACT_CONTACT_FORM, null, null, $activityInfo, null);
-        $createActivity = new CreateActivityCommand($createActivityModel);
+        $createActivityModel = new CreateActivity($date, ActivityType::CONTACT_CONTACT_FORM, null, null, $activityInfo, null);
+        $createActivity = new CreateContactActivity($contactId, $createActivityModel);
 
-        $this->assertEquals("https://openapi.wix.com/v1/activities", $createActivity->getEndpointUrl());
-        $this->assertEquals("/activities", $createActivity->getCommand());
+        $this->assertEquals("https://openapi.wix.com/v1/contacts/$contactId/activities", $createActivity->getEndpointUrl());
+        $this->assertEquals("/contacts/$contactId/activities", $createActivity->getCommand());
         $this->assertEquals("POST", $createActivity->getHttpMethod());
         $this->assertEquals([], $createActivity->getHttpHeaders());
         $this->assertEquals('{"createdAt":"'.$date->format(Signature::TIME_FORMAT).'","activityType":"contact/contact-form","activityInfo":{"fields":[{"name":"test name","value":"test value"}]}}', $createActivity->getBody());
     }
-
-
 
 }

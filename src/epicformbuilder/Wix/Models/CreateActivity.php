@@ -2,15 +2,20 @@
 /**
  * User: EpicFormBuilder
  * Email: support@epicformbuilder.com
- * Date: 3/21/15
- * Time: 12:12 AM
+ * Date: 11/18/15
+ * Time: 9:05 PM
  */
 namespace epicformbuilder\Wix\Models;
 
 use epicformbuilder\WixHiveApi\Signature;
 
-class CreateActivity extends Model
-{
+/**
+ * Class CreateActivity
+ *
+ * @package epicformbuilder\Wix\Models
+ */
+class CreateActivity extends Model{
+
     /** @var string */
     public $createdAt;
 
@@ -26,25 +31,20 @@ class CreateActivity extends Model
     /** @var \stdClass  */
     public $activityInfo;
 
-    /** @var  Contact */
-    public $contactUpdate;
-
     /**
      * @param \DateTime       $createdAt
      * @param string          $activityType
      * @param null            $activityLocationUrl
      * @param ActivityDetails $activityDetails
      * @param \stdClass       $activityInfo
-     * @param Contact         $contactUpdate
      */
-    public function __construct(\DateTime $createdAt=null, $activityType=null, $activityLocationUrl=null, ActivityDetails $activityDetails = null, \stdClass $activityInfo = null, Contact $contactUpdate = null)
+    public function __construct(\DateTime $createdAt=null, $activityType=null, $activityLocationUrl=null, ActivityDetails $activityDetails = null, \stdClass $activityInfo = null)
     {
         $this->createdAt = $createdAt->format(Signature::TIME_FORMAT);
         $this->activityType = $activityType;
         $this->activityLocationUrl = $activityLocationUrl;
         $this->activityDetails = $activityDetails;
         $this->activityInfo = $activityInfo;
-        $this->contactUpdate = $contactUpdate;
-
     }
+
 }

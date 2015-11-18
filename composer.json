@@ -2,12 +2,13 @@
     "name": "epicformbuilder/wixhive-php-api",
     "description": "WixHive API PHP Library",
     "type": "library",
-    "version": "0.0.2",
-    "homepage": "https://github.com/Epicformbuilder/wixhive-php-api",
+    "version": "0.0.3",
+    "homepage": "https://github.com/epicformbuilder/wixhive-php-api",
     "license": "BSD-3-Clause",
     "keywords": ["php", "wix", "wixhive"],
     "require": {
-        "php": ">=5.4.0"
+        "php": ">=5.4.0",
+        "ext-http": ">=1.7.6"
     },
     "authors" : [
         {

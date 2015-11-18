@@ -2,21 +2,16 @@
 /**
  * User: EpicFormBuilder
  * Email: support@epicformbuilder.com
- * Date: 3/20/15
- * Time: 4:55 PM
+ * Date: 11/18/15
+ * Time: 10:05 PM
  */
 namespace epicformbuilder\WixHiveApi\Commands\Contact;
 
 use epicformbuilder\WixHiveApi\Commands\Command;
-use epicformbuilder\WixHiveApi\ResponseProcessors\ContactResult;
+use epicformbuilder\WixHiveApi\ResponseProcessors\ContactResultNew;
 use epicformbuilder\Wix\Models\CreateContact as CreateContactModel;
 
-/**
- * Class CreateContact
- * @package epicformbuilder\WixHiveApi\Commands\Contact
- * @deprecated Wix will stop support the command any time. Please, start using CreateContactNew command instead ASAP
- */
-class CreateContact extends Command
+class CreateContactNew extends Command
 {
     /** @var  string */
     protected $command = "/contacts";
@@ -33,10 +28,10 @@ class CreateContact extends Command
     }
 
     /**
-     * @return ContactResult
+     * @return ContactResultNew
      */
     public function getResponseProcessor()
     {
-        return new ContactResult();
+        return new ContactResultNew();
     }
 }

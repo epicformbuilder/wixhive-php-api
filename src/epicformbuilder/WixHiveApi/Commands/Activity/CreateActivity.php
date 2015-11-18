@@ -7,9 +7,15 @@
  */
 namespace epicformbuilder\WixHiveApi\Commands\Activity;
 
+use epicformbuilder\Wix\Models\CreateActivityOld;
 use epicformbuilder\WixHiveApi\Commands\Command;
 use epicformbuilder\WixHiveApi\ResponseProcessors\ActivityResult;
 
+/**
+ * Class CreateActivityOld
+ * @package epicformbuilder\WixHiveApi\Commands\Activity
+ * @deprecated Wix can stop supporting the command any time. Please, use CreateContactActivity command instead
+ */
 class CreateActivity extends Command
 {
     /** @var  string */
@@ -19,9 +25,9 @@ class CreateActivity extends Command
     protected $httpMethod = "POST";
 
     /**
-     * @param \epicformbuilder\Wix\Models\CreateActivity $createActivity
+     * @param CreateActivityOld $createActivity
      */
-    public function __construct( \epicformbuilder\Wix\Models\CreateActivity $createActivity)
+    public function __construct(CreateActivityOld $createActivity)
     {
         $this->requestBodyObject = $createActivity;
     }

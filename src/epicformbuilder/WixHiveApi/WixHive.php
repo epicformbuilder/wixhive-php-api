@@ -9,10 +9,16 @@ namespace epicformbuilder\WixHiveApi;
 
 use epicformbuilder\Wix\Models\Model;
 use epicformbuilder\WixHiveApi\Commands\Command;
+use epicformbuilder\WixHiveApi\Commands\Contact\CreateContactNew;
 
-class WixHive{
-
-    const API_VERSION = "1.0.0";
+/**
+ * Class WixHive
+ * @package epicformbuilder\WixHiveApi
+ */
+class WixHive
+{
+    const API_VERSION_FIRST = "1.0.0";
+    const API_VERSION_SECOND = "2.0.0";
 
     /** @var  string */
     private $applicationId;
@@ -28,7 +34,8 @@ class WixHive{
      * @param string $secretKey
      * @param string $instanceId
      */
-    public function __construct($applicationId, $secretKey, $instanceId){
+    public function __construct($applicationId, $secretKey, $instanceId)
+    {
         $this->applicationId = $applicationId;
         $this->secretKey = $secretKey;
         $this->instanceId = $instanceId;
@@ -41,11 +48,12 @@ class WixHive{
      * @return Model object
      * @throws WixHiveException
      */
-    public function execute(Command $command, $userSessionToken=null){
+    public function execute(Command $command, $userSessionToken=null)
+    {
 
         $date = new \DateTime("now", new \DateTimeZone("UTC"));
 
-        $getParams = ["version" => self::API_VERSION];
+        $getParams = ["version" => $this->getAPIVersionForCommand($command)];
         if ($userSessionToken !== null) $getParams['userSessionToken'] = $userSessionToken;
 
         // prepare the request based on the command
@@ -53,7 +61,7 @@ class WixHive{
             "x-wix-application-id" => $this->applicationId,
             "x-wix-instance-id" => $this->instanceId,
             "x-wix-timestamp" => $date->format(Signature::TIME_FORMAT),
-            "x-wix-signature" => Signature::sign($this->applicationId, $this->secretKey, $this->instanceId, $userSessionToken, Command::WIXHIVE_VERSION, self::API_VERSION, $command->getCommand(), $command->getBody(), $command->getHttpMethod(), $date),
+            "x-wix-signature" => Signature::sign($this->applicationId, $this->secretKey, $this->instanceId, $userSessionToken, Command::WIXHIVE_VERSION, $this->getAPIVersionForCommand($command), $command->getCommand(), $command->getBody(), $command->getHttpMethod(), $date),
             "Content-Type" => "application/json",
             "Expect" => "",
         ];
@@ -66,5 +74,15 @@ class WixHive{
         return ResponseProcessor::process($command, $response);
     }
 
+    /**
+     * @param Command $command
+     *
+     * @return string
+     */
+    protected function getAPIVersionForCommand(Command $command){
+        if ($command instanceof CreateContactNew) return self::API_VERSION_SECOND;
+
+        return self::API_VERSION_FIRST;
+    }
 
 }

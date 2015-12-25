@@ -6,7 +6,6 @@
  * Time: 10:34 PM
  */
 
-use epicformbuilder\WixHiveApi\Response;
 use epicformbuilder\WixHiveApi\ResponseProcessors\PagingContactsResult;
 use epicformbuilder\Wix\Models\PagingContactsResult as PagingContactsResultModel;
 
@@ -33,7 +32,7 @@ class PagingContactsResultTest extends PHPUnit_Framework_TestCase
         $data->nextCursor = $nextCursor;
         $data->results = [$contactObject];
 
-        $pagingContactResultModel = (new PagingContactsResult())->process(new Response($data));
+        $pagingContactResultModel = (new PagingContactsResult())->process($data);
 
         $this->assertEquals($expectedPagingContactResultModel, $pagingContactResultModel);
 

@@ -8,7 +8,6 @@
 
 use epicformbuilder\Wix\ActivityType;
 use epicformbuilder\Wix\Models\ActivityTypes as ActivityTypesModel;
-use epicformbuilder\WixHiveApi\Response;
 use epicformbuilder\WixHiveApi\ResponseProcessors\ActivityTypes;
 
 class ActivityTypesTest extends PHPUnit_Framework_TestCase
@@ -22,7 +21,7 @@ class ActivityTypesTest extends PHPUnit_Framework_TestCase
         $data = new stdClass();
         $data->types = $types;
 
-        $activityTypesModel = (new ActivityTypes())->process(new Response($data));
+        $activityTypesModel = (new ActivityTypes())->process($data);
 
         $this->assertEquals($expectedActivityTypesModel, $activityTypesModel);
     }

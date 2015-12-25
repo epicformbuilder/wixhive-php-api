@@ -7,6 +7,12 @@
  */
 namespace epicformbuilder\WixHiveApi;
 
-class WixHiveException extends \Exception{
+/**
+ * Class WixHiveException
+ *
+ * @package epicformbuilder\WixHiveApi
+ */
+class WixHiveException extends \Exception
+{
 
 }

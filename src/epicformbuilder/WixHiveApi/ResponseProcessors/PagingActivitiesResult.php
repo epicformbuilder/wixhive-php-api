@@ -9,20 +9,19 @@ namespace epicformbuilder\WixHiveApi\ResponseProcessors;
 
 use epicformbuilder\Wix\Models\Activity as ActivityModel;
 use epicformbuilder\Wix\Models\ActivityDetails;
-use epicformbuilder\WixHiveApi\Response;
 use epicformbuilder\Wix\Models\PagingActivitiesResult as PagingActivitiesResultModel;
 
 class PagingActivitiesResult implements Processor
 {
     /**
-     * @param Response $response
+     * @param \stdClass $responseData
      *
      * @return PagingActivitiesResultModel
      */
-    public function process(Response $response)
+    public function process(\stdClass $responseData)
     {
         $results = [];
-        foreach($response->getResponseData()->results as $result){
+        foreach($responseData->results as $result){
 
             $activity = new ActivityModel(
                 $result->id,
@@ -36,6 +35,6 @@ class PagingActivitiesResult implements Processor
             $results[] = $activity;
         }
 
-        return new PagingActivitiesResultModel($response->getResponseData()->pageSize, $response->getResponseData()->previousCursor, $response->getResponseData()->nextCursor, $results);
+        return new PagingActivitiesResultModel($responseData->pageSize, $responseData->previousCursor, $responseData->nextCursor, $results);
     }
 }

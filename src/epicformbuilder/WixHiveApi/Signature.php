@@ -7,8 +7,13 @@
  */
 namespace epicformbuilder\WixHiveApi;
 
-class Signature{
-
+/**
+ * Class Signature
+ *
+ * @package epicformbuilder\WixHiveApi
+ */
+class Signature
+{
     const TIME_FORMAT = "Y-m-d\TH:i:s.000\Z";
 
     /**
@@ -25,7 +30,8 @@ class Signature{
      *
      * @return string
      */
-    public static function sign($applicationId, $secretKey, $instanceId, $userSessionToken, $apiVersion, $apiVersionInGetParam, $command, $body, $httpMethod, \DateTime $date){
+    public static function sign($applicationId, $secretKey, $instanceId, $userSessionToken, $apiVersion, $apiVersionInGetParam, $command, $body, $httpMethod, \DateTime $date)
+    {
 
         $queryData = [
             "x-wix-application-id" => $applicationId,

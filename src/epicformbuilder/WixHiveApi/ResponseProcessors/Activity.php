@@ -9,24 +9,23 @@ namespace epicformbuilder\WixHiveApi\ResponseProcessors;
 
 use epicformbuilder\Wix\Models\ActivityDetails;
 use epicformbuilder\Wix\Models\Activity as ActivityModel;
-use epicformbuilder\WixHiveApi\Response;
 
 class Activity implements Processor
 {
     /**
-     * @param Response $response
+     * @param \stdClass $responseDataData
      *
      * @return ActivityModel
      */
-    public function process(Response $response)
+    public function process(\stdClass $responseDataData)
     {
         $activityModel = new ActivityModel(
-            $response->getResponseData()->id,
-            new \DateTime($response->getResponseData()->createdAt),
-            $response->getResponseData()->activityType,
-            $response->getResponseData()->activityInfo,
-            $response->getResponseData()->activityLocationUrl,
-            new ActivityDetails($response->getResponseData()->activityDetails->additionalInfoUrl, $response->getResponseData()->activityDetails->summary)
+            $responseDataData->id,
+            new \DateTime($responseDataData->createdAt),
+            $responseDataData->activityType,
+            $responseDataData->activityInfo,
+            $responseDataData->activityLocationUrl,
+            new ActivityDetails($responseDataData->activityDetails->additionalInfoUrl, $responseDataData->activityDetails->summary)
         );
 
         return $activityModel;

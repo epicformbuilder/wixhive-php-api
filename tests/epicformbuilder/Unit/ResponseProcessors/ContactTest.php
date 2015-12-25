@@ -6,7 +6,6 @@
  * Time: 11:38 AM
  */
 
-use epicformbuilder\WixHiveApi\Response;
 use epicformbuilder\WixHiveApi\ResponseProcessors\Contact;
 
 class ContactTest extends PHPUnit_Framework_TestCase
@@ -18,7 +17,7 @@ class ContactTest extends PHPUnit_Framework_TestCase
         $expectedContactModel = $this->givenAContactModel();
         $contactObject = $this->givenAContactModelAsObject($expectedContactModel);
 
-        $contactModel = (new Contact())->process(new Response($contactObject));
+        $contactModel = (new Contact())->process($contactObject);
 
         $this->assertEquals($expectedContactModel, $contactModel);
 

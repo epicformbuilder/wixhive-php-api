@@ -8,31 +8,30 @@
 namespace epicformbuilder\WixHiveApi\ResponseProcessors;
 
 use epicformbuilder\Wix\Models\ActivityTypeSummary;
-use epicformbuilder\WixHiveApi\Response;
 use epicformbuilder\Wix\Models\ActivitySummary as ActivitySummaryModel;
 
 class ActivitySummary implements Processor
 {
 
     /**
-     * @param Response $response
+     * @param \stdClass $responseData
      *
      * @return ActivitySummaryModel
      */
-    public function process(Response $response)
+    public function process(\stdClass $responseData)
     {
         $activityTypes = [];
-        foreach($response->getResponseData()->activityTypes as $type){
+        foreach($responseData->activityTypes as $type){
             $from = new \DateTime($type->from, new \DateTimeZone("UTC"));
             $until = isset($type->until) ? new \DateTime($type->until, new \DateTimeZone("UTC")) : null;
 
             $activityTypes[] = new ActivityTypeSummary($type->activityType, $type->total, $from, $until);
         }
 
-        $from = new \DateTime($response->getResponseData()->from, new \DateTimeZone("UTC"));
-        $until = isset($response->getResponseData()->until) ? new \DateTime($response->getResponseData()->until, new \DateTimeZone("UTC")) : null;
+        $from = new \DateTime($responseData->from, new \DateTimeZone("UTC"));
+        $until = isset($responseData->until) ? new \DateTime($responseData->until, new \DateTimeZone("UTC")) : null;
 
-        return new ActivitySummaryModel($activityTypes, $response->getResponseData()->total, $from, $until);
+        return new ActivitySummaryModel($activityTypes, $responseData->total, $from, $until);
     }
 
 }

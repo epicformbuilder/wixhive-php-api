@@ -17,20 +17,19 @@ use epicformbuilder\Wix\Models\ContactUrl;
 use epicformbuilder\Wix\Models\ImportantDate;
 use epicformbuilder\Wix\Models\PagingContactsResult as PagingContactsResultModel;
 use epicformbuilder\Wix\Models\StateLink;
-use epicformbuilder\WixHiveApi\Response;
 
 
 class PagingContactsResult implements Processor
 {
     /**
-     * @param Response $response
+     * @param \stdClass $responseData
      *
      * @return PagingContactsResultModel
      */
-    public function process(Response $response)
+    public function process(\stdClass $responseData)
     {
         $results = [];
-        foreach($response->getResponseData()->results as $result){
+        foreach($responseData->results as $result){
 
             $emails=[];
             foreach($result->emails as $email){
@@ -79,10 +78,10 @@ class PagingContactsResult implements Processor
         }
 
         return new PagingContactsResultModel(
-            $response->getResponseData()->total,
-            $response->getResponseData()->pageSize,
-            $response->getResponseData()->previousCursor,
-            $response->getResponseData()->nextCursor,
+            $responseData->total,
+            $responseData->pageSize,
+            $responseData->previousCursor,
+            $responseData->nextCursor,
             $results
         );
     }

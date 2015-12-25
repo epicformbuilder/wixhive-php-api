@@ -7,27 +7,33 @@
  */
 namespace epicformbuilder\WixHiveApi;
 
-
 use epicformbuilder\WixHiveApi\Commands\Command;
+use Psr\Http\Message\ResponseInterface;
 
+/**
+ * Class ResponseProcessor
+ *
+ * @package epicformbuilder\WixHiveApi
+ */
 class ResponseProcessor
 {
     /**
-     * @param Command  $command
-     * @param Response $response
+     * @param Command           $command
+     * @param ResponseInterface $response
      *
      * @return mixed
      * @throws WixHiveException
      */
-    public static function process(Command $command, Response $response)
+    public static function process(Command $command, ResponseInterface $response)
     {
+        $responseData = json_decode((string)$response->getBody());
 
-        if (isset($response->getResponseData()->errorCode)){
-            $message = isset($response->getResponseData()->message) ? $response->getResponseData()->message : "No message";
-            throw new WixHiveException($message, $response->getResponseData()->errorCode);
+        if (isset($responseData->errorCode)){
+            $message = isset($responseData->message) ? $responseData->message : "No message";
+            throw new WixHiveException($message, $responseData->errorCode);
         }
 
-        return $command->getResponseProcessor()->process($response);
+        return $command->getResponseProcessor()->process($responseData);
     }
 }
 

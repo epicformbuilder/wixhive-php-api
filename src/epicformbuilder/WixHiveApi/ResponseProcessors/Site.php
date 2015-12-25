@@ -7,18 +7,22 @@
  */
 namespace epicformbuilder\WixHiveApi\ResponseProcessors;
 
-use epicformbuilder\WixHiveApi\Response;
 use epicformbuilder\Wix\Models\Site as SiteModel;
 
+/**
+ * Class Site
+ *
+ * @package epicformbuilder\WixHiveApi\ResponseProcessors
+ */
 class Site implements Processor
 {
     /**
-     * @param Response $response
+     * @param \stdClass $responseData
      *
      * @return SiteModel
      */
-    public function process(Response $response)
+    public function process(\stdClass $responseData)
     {
-        return new SiteModel($response->getResponseData()->url, $response->getResponseData()->status);
+        return new SiteModel($responseData->url, $responseData->status);
     }
 }

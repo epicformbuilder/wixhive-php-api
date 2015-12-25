@@ -6,11 +6,8 @@
  * Time: 11:38 PM
  */
 
-use epicformbuilder\WixHiveApi\Response;
 use epicformbuilder\WixHiveApi\ResponseProcessors\PagingActivitiesResult;
 use epicformbuilder\Wix\Models\PagingActivitiesResult as PagingActivitiesResultModel;
-use epicformbuilder\WixHiveApi\Signature;
-
 
 class PagingActivitiesResultTest extends PHPUnit_Framework_TestCase
 {
@@ -43,7 +40,7 @@ class PagingActivitiesResultTest extends PHPUnit_Framework_TestCase
         $data->results = [$activityObject];
 
 
-        $pagingActivitiesResultModel = (new PagingActivitiesResult())->process(new Response($data));
+        $pagingActivitiesResultModel = (new PagingActivitiesResult())->process($data);
 
         $this->assertEquals($expectedPagingActivitiesResultModel, $pagingActivitiesResultModel);
 

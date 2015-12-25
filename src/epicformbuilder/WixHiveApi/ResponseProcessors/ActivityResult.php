@@ -7,18 +7,17 @@
  */
 namespace epicformbuilder\WixHiveApi\ResponseProcessors;
 
-use epicformbuilder\WixHiveApi\Response;
 use epicformbuilder\Wix\Models\ActivityResult as ActivityResultModel;
 
 class ActivityResult implements Processor
 {
     /**
-     * @param Response $response
+     * @param \stdClass $responseDataData
      *
      * @return ActivityResultModel
      */
-    public function process(Response $response)
+    public function process(\stdClass $responseDataData)
     {
-        return new ActivityResultModel($response->getResponseData()->activityId, $response->getResponseData()->contactId);
+        return new ActivityResultModel($responseDataData->activityId, $responseDataData->contactId);
     }
 }

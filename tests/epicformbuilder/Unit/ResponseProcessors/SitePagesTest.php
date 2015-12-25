@@ -7,7 +7,6 @@
  */
 
 use epicformbuilder\Wix\Models\Page;
-use epicformbuilder\WixHiveApi\Response;
 use epicformbuilder\Wix\Models\Site as SiteModel;
 use epicformbuilder\Wix\Models\SitePages as SitePagesModel;
 use epicformbuilder\WixHiveApi\ResponseProcessors\SitePages;
@@ -40,7 +39,7 @@ class SitePagesTest extends PHPUnit_Framework_TestCase
         $data->siteUrl = $siteUrl;
         $data->pages = [$page];
 
-        $sitePageModel  = (new SitePages())->process(new Response($data));
+        $sitePageModel  = (new SitePages())->process($data);
 
         $this->assertEquals($expectedSitePageModel, $sitePageModel );
     }

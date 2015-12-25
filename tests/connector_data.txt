@@ -1,6 +1,0 @@
-HTTP/1.1 200 OK
-Date: Sun, 22 Mar 2015 09:56:08 GMT
-Content-Type: application/json;charset=UTF-8
-Content-Length: 104
-
-{"activityId":"8004389d-776c-453d-a4f5-da7eef97af4a","contactId":"f092a0fe-8821-4131-ab27-42d17972feac"}

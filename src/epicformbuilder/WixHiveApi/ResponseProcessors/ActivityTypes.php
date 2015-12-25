@@ -7,19 +7,18 @@
  */
 namespace epicformbuilder\WixHiveApi\ResponseProcessors;
 
-use epicformbuilder\WixHiveApi\Response;
 use epicformbuilder\Wix\Models\ActivityTypes as ActivityTypesModel;
 
 class ActivityTypes implements Processor
 {
     /**
-     * @param Response $response
+     * @param \stdClass $responseData
      *
      * @return ActivityTypesModel
      */
-    public function process(Response $response)
+    public function process(\stdClass $responseData)
     {
-        $types = (array)$response->getResponseData()->types;
+        $types = (array)$responseData->types;
         return new ActivityTypesModel($types);
     }
 }

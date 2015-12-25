@@ -1,6 +1,6 @@
 # WixHive API PHP Library
 
-[![Build Status](https://travis-ci.org/epicformbuilder/wixhive-php-api.svg?branch=0.0.2)](https://travis-ci.org/epicformbuilder/wixhive-php-api)
+[![Build Status](https://travis-ci.org/epicformbuilder/wixhive-php-api.svg?branch=0.0.4)](https://travis-ci.org/epicformbuilder/wixhive-php-api)
 
 This library is a PHP wrapper WixHive API.
 

@@ -7,10 +7,7 @@
  */
 namespace epicformbuilder\WixHiveApi\ResponseProcessors;
 
-use epicformbuilder\WixHiveApi\Response;
-
-interface Processor{
-
-    public function process(Response $response);
-
+interface Processor
+{
+    public function process(\stdClass $responseDataData);
 }

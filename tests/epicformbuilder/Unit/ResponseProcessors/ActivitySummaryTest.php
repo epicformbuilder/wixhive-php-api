@@ -8,7 +8,6 @@
 
 use epicformbuilder\Wix\ActivityType;
 use epicformbuilder\Wix\Models\ActivityTypeSummary;
-use epicformbuilder\WixHiveApi\Response;
 use epicformbuilder\WixHiveApi\ResponseProcessors\ActivitySummary;
 use epicformbuilder\Wix\Models\ActivitySummary as ActivitySummaryModel;
 use epicformbuilder\WixHiveApi\Signature;
@@ -47,7 +46,7 @@ class ActivitySummaryTest extends PHPUnit_Framework_TestCase
         $data->from = $from->format(Signature::TIME_FORMAT);
         $data->until = $until->format(Signature::TIME_FORMAT);
 
-        $activitySummaryModel = (new ActivitySummary())->process(new Response($data));
+        $activitySummaryModel = (new ActivitySummary())->process($data);
 
         $this->assertEquals($expectedActivitySummaryModel, $activitySummaryModel);
     }

@@ -8,7 +8,6 @@
 
 use epicformbuilder\Wix\ActivityType;
 use epicformbuilder\Wix\Models\ActivityDetails;
-use epicformbuilder\WixHiveApi\Response;
 use epicformbuilder\WixHiveApi\ResponseProcessors\Activity;
 use epicformbuilder\Wix\Models\Activity as ActivityModel;
 use epicformbuilder\WixHiveApi\Signature;
@@ -41,7 +40,7 @@ class ActivityTest extends PHPUnit_Framework_TestCase
         $data->activityLocationUrl = $activityLocationUrl;
         $data->activityDetails = $activityDetails;
 
-        $activityModel = (new Activity())->process(new Response($data));
+        $activityModel = (new Activity())->process($data);
 
         $this->assertEquals($expectedActivityModel, $activityModel);
 

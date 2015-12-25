@@ -8,23 +8,27 @@
 namespace epicformbuilder\WixHiveApi\ResponseProcessors;
 
 use epicformbuilder\Wix\Models\Page;
-use epicformbuilder\WixHiveApi\Response;
 use epicformbuilder\Wix\Models\SitePages as SitePagesModel;
 use epicformbuilder\Wix\Models\Site as SiteModel;
 
+/**
+ * Class SitePages
+ *
+ * @package epicformbuilder\WixHiveApi\ResponseProcessors
+ */
 class SitePages implements Processor
 {
     /**
-     * @param Response $response
+     * @param \stdClass $responseData
      *
      * @return SitePagesModel
      */
-    public function process(Response $response)
+    public function process(\stdClass $responseData)
     {
-        $siteUrl = new SiteModel($response->getResponseData()->siteUrl->url, $response->getResponseData()->siteUrl->status);
+        $siteUrl = new SiteModel($responseData->siteUrl->url, $responseData->siteUrl->status);
 
         $pages = [];
-        foreach($response->getResponseData()->pages as $page){
+        foreach($responseData->pages as $page){
             $pages[] = new Page($page->path, $page->wixPageId, $page->appPageId);
         }
 

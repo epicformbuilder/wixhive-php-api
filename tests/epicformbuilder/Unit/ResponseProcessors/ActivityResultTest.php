@@ -6,7 +6,6 @@
  * Time: 10:21 PM
  */
 
-use epicformbuilder\WixHiveApi\Response;
 use epicformbuilder\WixHiveApi\ResponseProcessors\ActivityResult;
 use epicformbuilder\Wix\Models\ActivityResult as ActivityResultModel;
 
@@ -24,7 +23,7 @@ class ActivityResultTest extends PHPUnit_Framework_TestCase
         $data->activityId = $activityId;
         $data->contactId = $contactId;
 
-        $activityResultModel = (new ActivityResult())->process(new Response($data));
+        $activityResultModel = (new ActivityResult())->process($data);
 
         $this->assertEquals($expectedActivityResultModel, $activityResultModel);
     }

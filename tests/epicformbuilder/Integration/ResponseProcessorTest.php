@@ -10,7 +10,6 @@ use epicformbuilder\Wix\Models\Activity as ActivityModel;
 use epicformbuilder\Wix\ActivityType;
 use epicformbuilder\Wix\Models\ActivityDetails;
 use epicformbuilder\WixHiveApi\Commands\Activity\GetActivityById;
-use epicformbuilder\WixHiveApi\Response;
 use epicformbuilder\WixHiveApi\ResponseProcessor;
 use epicformbuilder\WixHiveApi\Signature;
 
@@ -20,22 +19,21 @@ class ResponseProcessorTest extends \PHPUnit_Framework_TestCase
 
     public function testProcessShouldReturnModel()
     {
-
         $id = rand(1, 100);
         $createdAt = new DateTime('now', new DateTimeZone("UTC"));
         $activityType = ActivityType::CONTACT_CONTACT_FORM;
-        $activityInfo = new stdClass();
+        $activityInfo = new \stdClass();
         $activityLocationUrl = "url";
         $additionalInfoUrl = "additionalInfoUrl";
         $summary = "summary";
 
         $expectedModel = new ActivityModel($id, $createdAt, $activityType, $activityInfo, $activityLocationUrl, new ActivityDetails($additionalInfoUrl, $summary));
 
-        $activityDetails = new stdClass();
+        $activityDetails = new \stdClass();
         $activityDetails->additionalInfoUrl = $additionalInfoUrl;
         $activityDetails->summary = $summary;
 
-        $responseData = new stdClass();
+        $responseData = new \stdClass();
         $responseData->id = $id;
         $responseData->createdAt = $createdAt->format(Signature::TIME_FORMAT);
         $responseData->activityType = $activityType;
@@ -43,7 +41,11 @@ class ResponseProcessorTest extends \PHPUnit_Framework_TestCase
         $responseData->activityLocationUrl = $activityLocationUrl;
         $responseData->activityDetails = $activityDetails;
 
-        $model = ResponseProcessor::process(new GetActivityById($id), new Response($responseData));
+
+        $response = \Phake::mock("GuzzleHttp\\Psr7\\Response");
+        \Phake::when($response)->getBody()->thenReturn(json_encode($responseData));
+
+        $model = ResponseProcessor::process(new GetActivityById($id), $response);
 
         $this->assertEquals($expectedModel, $model);
     }
@@ -56,8 +58,11 @@ class ResponseProcessorTest extends \PHPUnit_Framework_TestCase
         $responseData->errorCode = 403;
         $responseData->message = "Permission denied";
 
+        $response = \Phake::mock("GuzzleHttp\\Psr7\\Response");
+        \Phake::when($response)->getBody()->thenReturn(json_encode($responseData));
+
         $this->setExpectedException('Exception', "Permission denied", 403);
-        ResponseProcessor::process(new GetActivityById($id), new Response($responseData));
+        ResponseProcessor::process(new GetActivityById($id), $response);
     }
 
 }

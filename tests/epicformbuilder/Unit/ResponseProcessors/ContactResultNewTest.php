@@ -10,7 +10,6 @@ use epicformbuilder\Wix\Models\Contact;
 use epicformbuilder\Wix\Models\ReconcileContactDetails;
 use epicformbuilder\Wix\Models\ReconcileContactDetailsNote;
 use epicformbuilder\Wix\Models\ReconcileContactResult;
-use epicformbuilder\WixHiveApi\Response;
 use epicformbuilder\WixHiveApi\ResponseProcessors\ContactResultNew;
 
 class ContactResultNewTest extends PHPUnit_Framework_TestCase
@@ -58,7 +57,7 @@ class ContactResultNewTest extends PHPUnit_Framework_TestCase
         $data->details->note->requiredPermissionsForAllData = ["ContactsReadPersonal"];
 
 
-        $contactResult= (new ContactResultNew())->process(new Response($data));
+        $contactResult= (new ContactResultNew())->process($data);
 
         $this->assertEquals($expectedContactResultModel, $contactResult);
 

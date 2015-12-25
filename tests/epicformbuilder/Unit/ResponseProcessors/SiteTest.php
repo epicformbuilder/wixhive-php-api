@@ -6,7 +6,6 @@
  * Time: 10:21 PM
  */
 
-use epicformbuilder\WixHiveApi\Response;
 use epicformbuilder\Wix\Models\Site as SiteModel;
 use epicformbuilder\WixHiveApi\ResponseProcessors\Site;
 
@@ -24,7 +23,7 @@ class SiteTest extends PHPUnit_Framework_TestCase
         $data->url = $url;
         $data->status = $status;
 
-        $siteModel = (new Site())->process(new Response($data));
+        $siteModel = (new Site())->process($data);
 
         $this->assertEquals($expectedSiteModel, $siteModel );
     }

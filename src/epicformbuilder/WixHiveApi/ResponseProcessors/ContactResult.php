@@ -7,18 +7,17 @@
  */
 namespace epicformbuilder\WixHiveApi\ResponseProcessors;
 
-use epicformbuilder\WixHiveApi\Response;
 use epicformbuilder\Wix\Models\ContactResult as ContactResultModel;
 
 class ContactResult implements Processor
 {
     /**
-     * @param Response $response
+     * @param \stdClass $responseData
      *
      * @return ContactResultModel
      */
-    public function process(Response $response)
+    public function process(\stdClass $responseData)
     {
-        return new ContactResultModel($response->getResponseData()->contactId);
+        return new ContactResultModel($responseData->contactId);
     }
 }

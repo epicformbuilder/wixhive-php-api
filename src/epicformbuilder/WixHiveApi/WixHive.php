@@ -10,6 +10,7 @@ namespace epicformbuilder\WixHiveApi;
 use epicformbuilder\Wix\Models\Model;
 use epicformbuilder\WixHiveApi\Commands\Command;
 use epicformbuilder\WixHiveApi\Commands\Contact\CreateContactNew;
+use GuzzleHttp\Exception\ClientException;
 
 /**
  * Class WixHive
@@ -50,7 +51,6 @@ class WixHive
      */
     public function execute(Command $command, $userSessionToken=null)
     {
-
         $date = new \DateTime("now", new \DateTimeZone("UTC"));
 
         $getParams = ["version" => $this->getAPIVersionForCommand($command)];
@@ -65,10 +65,22 @@ class WixHive
             "Content-Type" => "application/json",
             "Expect" => "",
         ];
-        $wixHiveRequest = new Request($command->getEndpointUrl($getParams), $command->getHttpMethod(), $headers, $command->getBody());
 
-        // trigger the request to the WixHive API
-        $response = (new Connector)->execute($wixHiveRequest);
+        try{
+            // trigger the request to the WixHive API
+            $request = new \GuzzleHttp\Psr7\Request($command->getHttpMethod(), $command->getEndpoint($getParams), $headers, $command->getBody());
+            $response = (new \GuzzleHttp\Client(['base_uri' => $command->getBaseUri()]))->send($request);
+
+            // checking response content type
+            $contentType = $response->getHeader("Content-Type");
+            $contentType = isset($contentType[0]) ? explode(";", $contentType[0]) : false;
+            if (!isset($contentType[0]) || $contentType[0] !== "application/json"){
+                throw new WixHiveException("Response content type is not supported", "415");
+            }
+
+        } catch (ClientException $e){
+            throw new WixHiveException($e->getResponse()->getReasonPhrase(), $e->getResponse()->getStatusCode());
+        }
 
         // process received response from WixHive API
         return ResponseProcessor::process($command, $response);
@@ -79,7 +91,8 @@ class WixHive
      *
      * @return string
      */
-    protected function getAPIVersionForCommand(Command $command){
+    protected function getAPIVersionForCommand(Command $command)
+    {
         if ($command instanceof CreateContactNew) return self::API_VERSION_SECOND;
 
         return self::API_VERSION_FIRST;

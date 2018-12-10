@@ -8,7 +8,7 @@
     "keywords": ["php", "wix", "wixhive"],
     "require": {
         "php": ">=5.5.0",
-        "guzzlehttp/guzzle": "6.2.0"
+        "guzzlehttp/guzzle": "6.2.1"
     },
     "authors" : [
         {

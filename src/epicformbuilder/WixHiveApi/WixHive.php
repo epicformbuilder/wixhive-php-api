@@ -27,19 +27,14 @@ class WixHive
     /** @var  string */
     private $secretKey;
 
-    /** @var  string */
-    private $instanceId ;
-
     /**
      * @param string $applicationId
      * @param string $secretKey
-     * @param string $instanceId
      */
-    public function __construct($applicationId, $secretKey, $instanceId)
+    public function __construct($applicationId, $secretKey)
     {
         $this->applicationId = $applicationId;
         $this->secretKey = $secretKey;
-        $this->instanceId = $instanceId;
     }
 
     /**
@@ -49,7 +44,7 @@ class WixHive
      * @return Model object
      * @throws WixHiveException
      */
-    public function execute(Command $command, $userSessionToken=null)
+    public function execute(Command $command, $instanceId, $userSessionToken=null)
     {
         $date = new \DateTime("now", new \DateTimeZone("UTC"));
 
@@ -59,9 +54,9 @@ class WixHive
         // prepare the request based on the command
         $headers = [
             "x-wix-application-id" => $this->applicationId,
-            "x-wix-instance-id" => $this->instanceId,
+            "x-wix-instance-id" => $instanceId,
             "x-wix-timestamp" => $date->format(Signature::TIME_FORMAT),
-            "x-wix-signature" => Signature::sign($this->applicationId, $this->secretKey, $this->instanceId, $userSessionToken, Command::WIXHIVE_VERSION, $this->getAPIVersionForCommand($command), $command->getCommand(), $command->getBody(), $command->getHttpMethod(), $date),
+            "x-wix-signature" => Signature::sign($this->applicationId, $this->secretKey, $instanceId, $userSessionToken, Command::WIXHIVE_VERSION, $this->getAPIVersionForCommand($command), $command->getCommand(), $command->getBody(), $command->getHttpMethod(), $date),
             "Content-Type" => "application/json",
             "Expect" => "",
         ];

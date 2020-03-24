@@ -7,7 +7,7 @@ This library is a PHP wrapper WixHive API.
 ## Usage
 ```php
         // create WixHive object
-        $wixHive = new WixHive("{app_id}", "{app_secret_key}", "{instance_id}");
+        $wixHive = new WixHive("{app_id}", "{app_secret_key}");
         
         // generate data for activity                    
         $field = new \stdClass();
@@ -32,7 +32,7 @@ This library is a PHP wrapper WixHive API.
         try{
             
             /** @var ActivityResult $data */
-            $data = $wixHive->execute($command, $userSessionToken); // <-- $userSessionToken comes from Wix JS SDK
+            $data = $wixHive->execute($command, "{instance_id}" $userSessionToken); // <-- $userSessionToken comes from Wix JS SDK
             
         }catch (WixHiveException $e){
             // catch an error here

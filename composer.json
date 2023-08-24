@@ -7,8 +7,8 @@
     "license": "BSD-3-Clause",
     "keywords": ["php", "wix", "wixhive"],
     "require": {
-        "php": ">=5.5.0",
-        "guzzlehttp/guzzle": "6.3.3"
+        "php": ">=8.1.0",
+        "guzzlehttp/guzzle": "7.7.0"
     },
     "authors" : [
         {
@@ -18,7 +18,8 @@
     ],
     "require-dev": {
         "phake/phake": "2.0.*@dev",
-        "phpunit/phpunit": "4.2.6"
+        "phpunit/phpunit": "4.2.6",
+        "phpcompatibility/php-compatibility": "^9.3"
     },
     "config": {
         "bin-dir": "./"
@@ -26,5 +27,9 @@
     "autoload": {
         "psr-4": { "epicformbuilder\\": "src/epicformbuilder" }
     },
-    "minimum-stability": "stable"
+    "minimum-stability": "stable",
+    "scripts": {
+        "sniffer:php8": "./phpcs -p . --ignore=/vendor/* --standard=vendor/phpcompatibility/php-compatibility/PHPCompatibility --runtime-set testVersion 8.2 -d memory_limit=1024M"
+    }
+
 }
